@@ -1,56 +1,32 @@
-import 'package:advanced/constants/colors.dart';
 import 'package:advanced/constants/strings.dart';
 import 'package:flutter/material.dart';
-
+import '../widgets/build_next_button.dart';
+import '../widgets/build_phone_number_submited_bloc.dart';
+import '../widgets/build_text_field.dart';
 import '../widgets/country_flag.dart';
-import '../widgets/custom_button.dart';
 import '../widgets/pre_text.dart';
 
 // ignore: must_be_immutable
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
   late String phoneNumber;
-
-  Widget buildtextfield() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: MyColors.purbel),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: TextFormField(
-        autofocus: true,
-        style: const TextStyle(fontSize: 18, letterSpacing: 2.0),
-        decoration: const InputDecoration(
-          border: InputBorder.none,
-        ),
-        cursorColor: Colors.black,
-        keyboardType: TextInputType.phone,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "Please enter your phone number";
-          } else if (value.length < 11) {
-            return 'to short phone number';
-          }
-          return null;
-        },
-        onSaved: (value) {
-          phoneNumber = value!;
-        },
-      ),
-    );
-  }
+  final GlobalKey<FormState> _phoneFormKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Form(
-          key: UniqueKey(),
+          key: _phoneFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
             child: Column(
               children: [
-                 PreTexts(text1:textone ,text2: textywo,),
+                PreTexts(
+                  text1: textone,
+                  text2: textywo,
+                  phoneNumber: ':',
+                ),
                 const SizedBox(
                   height: 80,
                 ),
@@ -60,13 +36,14 @@ class Login extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Expanded(flex: 2, child: buildtextfield()),
+                    Expanded(flex: 2, child: BuildTextField(phone: phoneNumber)),
                   ],
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-              const    NextButton(buttonName: 'Next',),
+                 BuildNextButton(phoneFormKey: _phoneFormKey, phoneNumber: phoneNumber, context: context),
+                BuildPhoneNumberSubmitedBloc(phoneNumber: phoneNumber),
               ],
             ),
           ),

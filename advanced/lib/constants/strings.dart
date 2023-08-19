@@ -1,4 +1,4 @@
-const String loginScreen = '/';
+const String loginScreen = '/login';
 const String otpScreen = '/otp';
 const String mapScreen = '/map';
 const String textone = 'What Is Your Phone Number ?';

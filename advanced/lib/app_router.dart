@@ -14,7 +14,7 @@ class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case mapScreen:
-        return MaterialPageRoute(builder: (_)=>const MapScreen());
+        return MaterialPageRoute(builder: (_) => const MapScreen());
 
       case loginScreen:
         return MaterialPageRoute(
@@ -25,11 +25,12 @@ class AppRouter {
           ),
         );
       case otpScreen:
+        final phoneNumber=settings.arguments;
         return MaterialPageRoute(
           builder: (_) => BlocProvider<PhoneAuthCubit>.value(
             // create: (ctx)=>phoneAuthCubit!,
             value: phoneAuthCubit!,
-            child: const OtpScreen(),
+            child:  OtpScreen(phoneNumber:phoneNumber),
           ),
         );
     }
