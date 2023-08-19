@@ -25,7 +25,7 @@ class AppRouter {
           ),
         );
       case otpScreen:
-        final phoneNumber=settings.arguments;
+        final String phoneNumber=settings.arguments.toString();
         return MaterialPageRoute(
           builder: (_) => BlocProvider<PhoneAuthCubit>.value(
             // create: (ctx)=>phoneAuthCubit!,
