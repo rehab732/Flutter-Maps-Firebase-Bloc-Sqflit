@@ -1,8 +1,9 @@
 import 'package:advanced/constants/colors.dart';
+import 'package:advanced/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/country_flag.dart';
-import '../widgets/next_button.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/pre_text.dart';
 
 // ignore: must_be_immutable
@@ -49,7 +50,7 @@ class Login extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
             child: Column(
               children: [
-                const PreTexts(),
+                 PreTexts(text1:textone ,text2: textywo,),
                 const SizedBox(
                   height: 80,
                 ),
@@ -65,7 +66,7 @@ class Login extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const NextButton(),
+              const    NextButton(buttonName: 'Next',),
               ],
             ),
           ),
