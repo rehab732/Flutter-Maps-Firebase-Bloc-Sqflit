@@ -15,15 +15,20 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PhoneAuthCubit>(
-      create: (context) => phoneAuthCubit,
-      child: ElevatedButton(
-          onPressed: () async {
-            await phoneAuthCubit.logOut();
-            // ignore: use_build_context_synchronously
-            Navigator.of(context).pushReplacementNamed(loginScreen);
-          },
-          child:const Text("Maps")),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        BlocProvider<PhoneAuthCubit>(
+          create: (context) => phoneAuthCubit,
+          child: ElevatedButton(
+              onPressed: () async {
+                await phoneAuthCubit.logOut();
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pushReplacementNamed(loginScreen);
+              },
+              child:const Text("Maps Screen")),
+        ),
+      ],
     );
   }
 }
