@@ -1,17 +1,15 @@
 import 'package:advanced/presentation/screens/login.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 
-abstract class AppRouter {
-  static const kHomeView = '/login';
-  
-  static final router = GoRouter(
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) {
-          return const Login();
-        },
-      ),
-    ],
-  );
+ class AppRouter {
+  Route? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+      return MaterialPageRoute(
+        builder:(_)=> const Login(),
+
+         );
+    }
+    return null;
+  }
 }

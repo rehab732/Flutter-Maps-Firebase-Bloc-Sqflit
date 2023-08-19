@@ -5,15 +5,22 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({
+    Key? key, 
+    required this.appRouter,
+    }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
+    return MaterialApp(
+      onGenerateRoute: appRouter.generateRoute,
       title: 'Advanced App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
